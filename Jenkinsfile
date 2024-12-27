@@ -12,7 +12,8 @@ pipeline
                 {
                   cicd.gitDownload("maven")  
                 }
-            }
+        
+	}
         }
         stage('build')
         {
@@ -24,37 +25,6 @@ pipeline
                 }
             }
         }
-        stage('deploy')
-        {
-            steps
-            {
-                script
-                {
-                    cicd.Deploy("DeclarativePipeline1","172.31.1.147","testapp")
-                }
             }
-        }
-        stage('testing')
-        {
-          steps
-          {
-              script
-              {
-                  cicd.gitDownload("FunctionalTesting")  
-                  cicd.runSelenium("DeclarativePipeline1")
-              }
-          }
-        }
-        stage('delivery')
-        {
-            steps
-            {
-                script
-                {
-                    cicd.Deploy("DeclarativePipeline1","172.31.9.253","prodapp")
-                }
-            }
-        }
-    }
 }
 
